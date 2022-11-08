@@ -56,6 +56,6 @@ We first plotted a grid-heat map between each state and its high temperature in 
 </div>
 
 <div class="right">
-{% include elements/button.html link="assets/notebook/homework10-group16.ipynb" text="The Source Code" %}
+{% include elements/button.html link="https://github.com/S1monXuan/S1monXuan.github.io/blob/main/assets/notebook/homework10-group16.ipynb" text="The Source Code" %}
 </div>
 

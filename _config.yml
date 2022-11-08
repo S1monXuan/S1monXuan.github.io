@@ -5,12 +5,12 @@
 # NOTE: it looks like you need to rebuild + repush everytime you update this _config.yml file
 
 ### Site Settings ###
-title               : Xinmai Xuan Blog 
+title               : HW10 Group16 Blog 
 description         : >-
-                      I may or may not be a Data Scientist, but I will.
+                      We are Group 16 for HW 10. We have three group members: Xinmai Xuan, Peng Lu, and Xiao Zhang. 
 baseurl             : ""   # Change to empty quotes if you are hosting your site at <your-username>.github.io directly,
 #                                             otherwise will be hosted at <your-username>.github.io/{{base_url}}
-repository          : jnaiman               # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
+repository          : Xinmai Xuan              # Change to <your-username>/<your-username>.github.io (or remove it if you don't need remote projects)
 open_new_tab        : false                             # Opens external URLs in new tab (works for posts, projects and navbar only)
 
 

@@ -1,7 +1,7 @@
 ---
 name: Group25
 tools: [Python, vega-lite, altair, geopandas, myblinder]
-image: assets/pngs/temperature.png
+image: assets/pngs/fin25-EU-map.png
 description: Homework 10 Group 16 Data Visualization
 custom_js:
   - vega.min

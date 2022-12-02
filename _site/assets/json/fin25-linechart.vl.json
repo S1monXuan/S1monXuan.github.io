@@ -1,0 +1,73 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/lovefade/lovefade.github.io/main/data/total.csv"
+  },
+  "width": 400,
+  "height": 300,
+  "layer": [
+    {
+      "encoding": {
+        "x": {"field": "TIME", "type": "temporal"},
+        "y": {"field": "CO2", "type": "quantitative"},
+        "color": {"field": "LOCATION", "type": "nominal"}
+      },
+      "layer": [
+        {"mark": "line"},
+        {
+          "params": [
+            {
+              "name": "label",
+              "select": {
+                "type": "point",
+                "encodings": ["x"],
+                "nearest": true,
+                "on": "mouseover"
+              }
+            }
+          ],
+          "mark": "point",
+          "encoding": {
+            "opacity": {
+              "condition": {"param": "label", "empty": false, "value": 1},
+              "value": 0
+            }
+          }
+        }
+      ]
+    },
+    {
+      "transform": [{"filter": {"param": "label", "empty": false}}],
+      "layer": [
+        {
+          "mark": {"type": "rule", "color": "gray"},
+          "encoding": {"x": {"type": "temporal", "field": "TIME"}}
+        },
+        {
+          "encoding": {
+            "text": {"type": "quantitative", "field": "CO2"},
+            "x": {"type": "temporal", "field": "TIME"},
+            "y": {"type": "quantitative", "field": "CO2"}
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "text",
+                "stroke": "white",
+                "strokeWidth": 2,
+                "align": "left",
+                "dx": 5,
+                "dy": -5
+              }
+            },
+            {
+              "mark": {"type": "text", "align": "left", "dx": 5, "dy": -5},
+              "encoding": {"color": {"type": "nominal", "field": "LOCATION"}}
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "config": {}
+}

@@ -35,13 +35,17 @@ We also show figures separately in this post, please feel free to check those fi
 
 ## EU map
 
-This is just a screen shot to display our map. 
+**This is just a screen shot to display our map.** 
+
+In Dashboard, you can check the value of Froest Resource in different years using a menu created by ipywidgets. By selecting different years, the map would display different layers.
 
 <img src="{{ site.baseurl }}/assets/pngs/fin25-EU-map.png" alt="image"/>
 
 ## Line chart
 
 The main factor affecting the greenhouse effect is carbon dioxide content, so we made a line chart of the carbon dioxide for each country. From the plot, we can see that Germany (DEU) has the most carbon dioxide emissions, which is consistent with the fact that Germany is a large industrial. And Denmark (DNK), Portugal (PRT), Austria (AUT) and Ireland (IRL) have consistently low CO2 emissions. As people pay more and more attention to ecology, we can see that overall, the carbon dioxide emissions of these countries have declined to a certain extent.
+
+Source code of this line chart: [Source Code](https://raw.githubusercontent.com/S1monXuan/S1monXuan.github.io/main/assets/json/fin25-linechart.vl.json)
 
 <vegachart schema-url="{{ site.baseurl }}/assets/json/fin25-linechart.vl.json" style="width: 100%"></vegachart>
 

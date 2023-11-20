@@ -1,26 +1,21 @@
-- title: Student, Harvard CS
-  from: 2013
-  to: 2018
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: Student, University Of Illinois Urbana-Champaign
+  from: 2021
+  to: 2023
+  description: Master of Science, Information Management. Focus on Programming and Data Science.
+          Enjoy every moment studying and living in Champaign-Urbana. Learned skills such as programming using 
+          Python and Java. Handled database management skills for both SQL and NOSQL.
+        
 
-- title: Software Engineer, Google, UK
-  from: 2018
-  to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: Student, Beijing Forestry University
+  from: 2016
+  to: 2021
+  description: Bachelor degree in Information Management and Information System(信息管理与信息系统). President of school table tennis club.
+    Organized a total of 8 school table tennis competitions over a span of two years, with cumulative participation exceeding 1,000 individuals.
+  
 
-- title: AMAZING STUFF
-  from: 2019
-  to: present
-  description: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-               sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-               nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-               reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+- title: Data Analyst Intern, GUO QIU HUI(国球汇), Beijing China
+  from: 2018 JUNE
+  to: 2018 AUG
+  description: 1. To improve satisfaction and increase number of games played in limited time. Leveraged SPSS to analyze participant engagement by comparing win rates. 
+    All participant were divided into groups based on results. Waiting time was reduced by 20% and participant satisfaction was improved to 96%.
+    2. Tableau was used to visualize participant-position correlations, facilitating smarter venue planning. A significant 33% uptick in event attendance was led.

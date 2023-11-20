@@ -1,5 +1,5 @@
 ---
-name: Homework10-Group16
+name: UIUC IS445 HW10-Group16
 tools: [Python, vega-lite, altair]
 image: assets/pngs/temperature.png
 description: Homework 10 Group 16 Data Visualization

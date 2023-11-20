@@ -1,5 +1,5 @@
 ---
-name: Group25
+name: IS445 FinalProject Group25
 tools: [Python, vega-lite, altair, geopandas, myblinder]
 image: assets/pngs/fin25-EU-map.png
 description: Homework 10 Group 16 Data Visualization

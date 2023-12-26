@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<!--
+  portfolYOU Jekyll theme by Youssef Raafat
+  Free for personal and commercial use under the MIT license
+  https://github.com/YoussefRaafatNasry/portfolYOU
+-->
+
+<html lang="en" class="h-100">
+
+<head>
+
+  
+  
+  
+
+  
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="MIT 65840 Lab1 Map-Reduce">
+  <meta property="og:description" content="Self implementation record for 65840 Distributed System">
+  <meta property="og:image" content="/assets/img/IMG_20170401_095735.jpg">
+
+  <title>MIT 65840 Lab1 Map-Reduce</title>
+  <meta name="description" content="Self implementation record for 65840 Distributed System">
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico">
+
+  <!-- Theme style -->
+  <script src="/assets/js/theme.js"></script>
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.10.0/css/all.css">
+
+  <!-- Bootstrap CSS CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+
+  <!-- Animate CSS CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="/assets/css/style.css">
+
+</head>
+
+<body class="h-100 d-flex flex-column">
+
+  <main class="flex-shrink-0 container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-themed">
+
+  <a class="navbar-brand" href="/"><h5><b>Xinmai Xuan</b></h5></a>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <i class="fas fa-1x fa-bars text-themed"></i>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav ml-auto"><a class="nav-item nav-link " href="/projects/">Projects</a>
+
+      <a class="nav-item nav-link active" href="/blog/">Blog</a>
+
+      <a class="nav-item nav-link " href="/about/">About</a>
+
+      
+
+      <span id="theme-toggler" class="nav-item nav-link" role="button" onclick="toggleTheme()"></span>
+    </div>
+  </div>
+
+</nav>
+    <div class="col-lg-10 mx-auto mt-5 markdown-body">
+  <h1><b>MIT 65840 Lab1 Map-Reduce</b></h1>
+
+<p class="post-metadata text-muted">
+  20 December 2023 -  
+  <b>3 mins read time</b>
+
+  <br>Tags: 
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#distributed-system">
+      <span class="tag badge badge-pill text-primary border border-primary">Distributed System</span>
+    </a>
+    </p>
+
+<p>Source: <a href="https://pdos.csail.mit.edu/6.824/labs/lab-mr.html">65840 Lab1</a></p>
+
+<p>Thank you for accessing my study path.</p>
+
+<p>It’s just my study records of MIT 65840, a famous distributed system coures. I would <strong>NOT</strong> share any code due to the student code and policy, just share my thinking and the possible solution I found. The accuracy of my solution is not guaranteed. Hope you would enjoy my share.</p>
+
+<h2 id="1-overview-of-this-task">1. Overview of this task</h2>
+
+<p>As the first lab of MIT 65840, MapReduce implementation task is a concise and understandable task. All I did is just watching first several courese, reading the Lab page and MapReduce paper.</p>
+
+<p>For those guys who have little coding experience or basic C/JAVA/PYTHON experience. Go courses are highly recommended. For those learner who can read or understand Chinese, a serious video from <a href="https://www.bilibili.com/video/BV1HW4y1n7BF">bilibili</a> and official <a href="https://go.dev/doc/tutorial/">Go tutorial</a> is recommend. I have ZERO go experience before learning this course. However, I can still finish this Lab after reading those materials.</p>
+
+<p>For those who really CAN NOT find <strong>any possible solutions</strong>, just like me, this <a href="https://www.bilibili.com/video/BV1mF411J7tH/?share_source=copy_web&amp;vd_source=30a004cc68fcb997cec4043e4e5862c7">video</a> published by 郭郭wg, an niubi bilibili up, may save your time and life. It could help you better understanding what is RPC and MapReduce. I learned a lot from those courese. Neither did he shared his code.</p>
+
+<h2 id="2-other-hint-for-this-lab">2. Other Hint for this Lab</h2>
+
+<p>The <em>A few rules</em> and <em>Hints</em> parts are essential for finishing this part. Those instructions could help you anytime you meet obstacles.</p>
+
+<p>The ExampleCall is a useful tool to help understanding data transmission between Coordinator and worker.</p>
+
+<h2 id="3-before-starting-programming">3. Before Starting Programming</h2>
+
+<p>Just make sure you read <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf">Map-Reduce paper</a>.</p>
+
+<h2 id="4-the-structure-i-used">4. The Structure I used</h2>
+
+<p>Since the lab provides a detailed structure, all tasks I need to do is to build a RPC task and a reasonable Coordinator.</p>
+
+<p>The coordinator contains 2 channel. One for Map task and another for Reduce. Besides, a map named TaskConditionMap which records process of all tasks are needed.</p>
+
+<h2 id="5-dummy-solution-for-time-checker">5. Dummy Solution for Time Checker</h2>
+
+<p><em>All those dummy solutions I provided, as it mentioned, are silly (but work!). I am 1000% for sure others would find better solutions. But that is all I got and used.</em></p>
+
+<p>To implement backup tasks and make sure those backup plan could only be scheduled after some relatively long period of time. Timestamps are desginated to all generated tasks. I compared all timestamp with year 2000 to find out those un-working tasks, since its 2023 right now. Only those works which owns a timestamp larger than 2000 would be considered working or worked.</p>
+
+<h2 id="6-dummy-solution-for-finish-signal">6. Dummy Solution for Finish Signal</h2>
+
+<p>Another problem I met is to told coordinator a task is finished successful. One solution I adopted is using another <code class="language-plaintext highlighter-rouge">Call</code> method.</p>
+
+<p>I wrote 2 Call funtion in this task. The first one, named Process, is responsible for getting data asking task from coordinator. The other one, named TaskDone, would notify Coordinator the task is finished without thinking about time limit.</p>
+
+<p><strong>It is coordinator’s job to determine whether the work is useful or not.</strong></p>
+
+<h2 id="7-result">7. Result</h2>
+
+<p><img src="../assets/img/65840/lab1-res.png" alt="65840 Lab1 Result" /></p>
+
+<h2 id="8-doodle">8. Doodle</h2>
+
+<p>It is definetly a simple but not that simple task for me. I am glad I finish the Lab1 and have a deeper understanding of MapReduce. Right now I am struggling building Raft ＞﹏＜. Hoping sharing my own precious solutions for Lab2 and earn more soon.</p>
+
+
+
+</div>
+  </main>
+  <footer class="mt-auto py-3 text-center">
+
+  <small class="text-muted mb-2">
+    <i class="fas fa-code"></i> with <i class="fas fa-heart"></i>
+    by <strong>Xinmai Xuan</strong>
+  </small>
+
+  <div class="container-fluid justify-content-center"><a class="social mx-1"  href="mailto:xinmaixuan@hotmail.com"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#db4437'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fas fa-envelope fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.github.com/S1monXuan"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#333333'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-github fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.instagram.com/orangestride_"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#405de6'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-instagram fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.kaggle.com/s1monxuan"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#20beff'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-kaggle fa-1x"></i>
+    </a><a class="social mx-1"  href="https://www.linkedin.com/in/xinmai-xuan-12a091183/"
+       style="color: #6c757d"
+       onMouseOver="this.style.color='#007bb5'"
+       onMouseOut="this.style.color='#6c757d'">
+      <i class="fab fa-linkedin-in fa-1x"></i>
+    </a>
+
+</div><small id="attribution">
+    theme <a href="https://github.com/YoussefRaafatNasry/portfolYOU">portfolYOU</a>
+  </small>
+
+</footer>
+
+
+
+
+  
+  <!-- GitHub Buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<!-- jQuery CDN -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Popper.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS CDN -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!-- wow.js CDN & Activation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
+<script> new WOW().init(); </script>
+
+<!-- Initialize all tooltips -->
+<script>
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+</body>
+
+</html>

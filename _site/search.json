@@ -1,6 +1,14 @@
 [
   
     {
+      "title"    : "MIT 65840 Lab1 Map-Reduce",
+      "category" : "",
+      "tags"     : "Distributed System",
+      "url"      : "/blog/MapReduce-65840",
+      "date"     : "2023-12-20 00:00:00 -0800"
+    } ,
+  
+    {
       "title"    : "The Hello World of Blogs",
       "category" : "",
       "tags"     : "Technology, Blogging",

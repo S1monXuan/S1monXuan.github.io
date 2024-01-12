@@ -84,49 +84,52 @@
     <a class="text-decoration-none no-underline" href="/blog/tags#distributed-system">
       <span class="tag badge badge-pill text-primary border border-primary">Distributed System</span>
     </a>
+    
+    <a class="text-decoration-none no-underline" href="/blog/tags#go">
+      <span class="tag badge badge-pill text-primary border border-primary">Go</span>
+    </a>
     </p>
 
 <p>Source: <a href="https://pdos.csail.mit.edu/6.824/labs/lab-mr.html">65840 Lab1</a></p>
 
 <p>Thank you for accessing my study path.</p>
 
-<p>It’s just my study records of MIT 65840, a famous distributed system coures. I would <strong>NOT</strong> share any code due to the student code and policy, just share my thinking and the possible solution I found. The accuracy of my solution is not guaranteed. Hope you would enjoy my share.</p>
+<p>These are my study records of MIT 65840, a renowned distributed systems course. I will <strong>NOT</strong> share any code due to the student code and policy. Instead, I will share my thoughts and the possible solutions I have found. The accuracy of my solutions is not guaranteed. I hope you enjoy my sharing.</p>
 
 <h2 id="1-overview-of-this-task">1. Overview of this task</h2>
 
-<p>As the first lab of MIT 65840, MapReduce implementation task is a concise and understandable task. All I did is just watching first several courese, reading the Lab page and MapReduce paper.</p>
+<p>For the first lab of MIT 65840, the MapReduce implementation task is concise and understandable. All I did was watch the first several courses, read the lab page, and the MapReduce paper.</p>
 
-<p>For those guys who have little coding experience or basic C/JAVA/PYTHON experience. Go courses are highly recommended. For those learner who can read or understand Chinese, a serious video from <a href="https://www.bilibili.com/video/BV1HW4y1n7BF">bilibili</a> and official <a href="https://go.dev/doc/tutorial/">Go tutorial</a> is recommend. I have ZERO go experience before learning this course. However, I can still finish this Lab after reading those materials.</p>
+<p>For those with little coding experience or basic knowledge in C, Java, or Python, Go courses are highly recommended. For learners who can read or understand Chinese, a helpful video from <a href="https://www.bilibili.com/video/BV1HW4y1n7BF">bilibili</a> and the official <a href="https://go.dev/doc/tutorial/">Go tutorial</a> are recommended. Despite having ZERO Go experience before taking this course, I was able to complete the lab after studying these materials.</p>
 
-<p>For those who really CAN NOT find <strong>any possible solutions</strong>, just like me, this <a href="https://www.bilibili.com/video/BV1mF411J7tH/?share_source=copy_web&amp;vd_source=30a004cc68fcb997cec4043e4e5862c7">video</a> published by 郭郭wg, an niubi bilibili up, may save your time and life. It could help you better understanding what is RPC and MapReduce. I learned a lot from those courese. Neither did he shared his code.</p>
+<p>For those who really CAN NOT find <strong>any possible solutions</strong>, just like me, this <a href="https://www.bilibili.com/video/BV1mF411J7tH/?share_source=copy_web&amp;vd_source=30a004cc68fcb997cec4043e4e5862c7">video</a> published by 郭郭wg, aa knowledgeable bilibili content creator, may save you time and frustration. It could help you better understand what RPC and MapReduce are. I learned a lot from these courses. He did not share his code either, but the insights gained are valuable.</p>
 
 <h2 id="2-other-hint-for-this-lab">2. Other Hint for this Lab</h2>
 
-<p>The <em>A few rules</em> and <em>Hints</em> parts are essential for finishing this part. Those instructions could help you anytime you meet obstacles.</p>
+<p>The <em>A few rules</em> and <em>Hints</em> parts are essential for finishing this section. These instructions can assist you whenever you encounter obstacles.</p>
 
-<p>The ExampleCall is a useful tool to help understanding data transmission between Coordinator and worker.</p>
+<p>The ExampleCall is a useful tool for understanding data transmission between the Coordinator and worker.</p>
 
 <h2 id="3-before-starting-programming">3. Before Starting Programming</h2>
 
-<p>Just make sure you read <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf">Map-Reduce paper</a>.</p>
+<p>Please ensure that you have read the <a href="https://static.googleusercontent.com/media/research.google.com/en//archive/mapreduce-osdi04.pdf">Map-Reduce paper</a>.</p>
 
 <h2 id="4-the-structure-i-used">4. The Structure I used</h2>
+<p>Since the lab provides a detailed structure, all I need to do is build an RPC task and a reasonable Coordinator.</p>
 
-<p>Since the lab provides a detailed structure, all tasks I need to do is to build a RPC task and a reasonable Coordinator.</p>
-
-<p>The coordinator contains 2 channel. One for Map task and another for Reduce. Besides, a map named TaskConditionMap which records process of all tasks are needed.</p>
+<p>The coordinator contains two channels: one for Map tasks and another for Reduce tasks. Additionally, a map named TaskConditionMap, which records the progress of all tasks, is needed.</p>
 
 <h2 id="5-dummy-solution-for-time-checker">5. Dummy Solution for Time Checker</h2>
 
-<p><em>All those dummy solutions I provided, as it mentioned, are silly (but work!). I am 1000% for sure others would find better solutions. But that is all I got and used.</em></p>
+<p><em>All the dummy solutions I provided, as mentioned, may seem silly (but they work!). I am 1000% sure that others would find better solutions, but that is all I got and used.</em></p>
 
-<p>To implement backup tasks and make sure those backup plan could only be scheduled after some relatively long period of time. Timestamps are desginated to all generated tasks. I compared all timestamp with year 2000 to find out those un-working tasks, since its 2023 right now. Only those works which owns a timestamp larger than 2000 would be considered working or worked.</p>
+<p>To implement backup tasks and ensure that these backup plans can only be scheduled after a relatively long period of time, timestamps are assigned to all generated tasks. I compared all timestamps with the year 2000 to identify non-functional tasks, given that it is currently 2023. Only tasks with timestamps later than 2000 are considered to be working or worked.</p>
 
 <h2 id="6-dummy-solution-for-finish-signal">6. Dummy Solution for Finish Signal</h2>
 
-<p>Another problem I met is to told coordinator a task is finished successful. One solution I adopted is using another <code class="language-plaintext highlighter-rouge">Call</code> method.</p>
+<p>Another problem I encountered is informing the coordinator that a task has been successfully completed. One solution I adopted is using another <code class="language-plaintext highlighter-rouge">Call</code> method.</p>
 
-<p>I wrote 2 Call funtion in this task. The first one, named Process, is responsible for getting data asking task from coordinator. The other one, named TaskDone, would notify Coordinator the task is finished without thinking about time limit.</p>
+<p>I wrote two <code class="language-plaintext highlighter-rouge">Call</code> functions for this task. The first one, named <code class="language-plaintext highlighter-rouge">Process</code>, is responsible for retrieving data and task requests from the coordinator. The other one, named <code class="language-plaintext highlighter-rouge">TaskDone</code>, notifies the coordinator when the task is finished, without considering any time limits.</p>
 
 <p><strong>It is coordinator’s job to determine whether the work is useful or not.</strong></p>
 
@@ -136,7 +139,7 @@
 
 <h2 id="8-doodle">8. Doodle</h2>
 
-<p>It is definetly a simple but not that simple task for me. I am glad I finish the Lab1 and have a deeper understanding of MapReduce. Right now I am struggling building Raft ＞﹏＜. Hoping sharing my own precious solutions for Lab2 and earn more soon.</p>
+<p>It is definitely a simple task, but not that simple for me. I am glad I finished Lab1 and gained a deeper understanding of MapReduce. Currently, I am struggling with building Raft ＞﹏＜. I hope to share my own solutions for Lab2 soon and learn even more.</p>
 
 
 

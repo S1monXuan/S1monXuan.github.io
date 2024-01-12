@@ -1,15 +1,15 @@
 - name: Java
-  percentage: 85
-  level: Expert
+  percentage: 80
+  level: Inter
   color: danger
 
 - name: Python
   percentage: 90
-  level: Beginner
+  level: Expert
   color: secondary
 
 - name: Go - On going Sutdying
   percentage: 50
-  level: Beginner
-  color:
+  level: Begin
+  color: info
 

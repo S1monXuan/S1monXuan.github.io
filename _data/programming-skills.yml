@@ -13,3 +13,7 @@
   level: Begin
   color: info
 
+- name: React
+  percentage: 85
+  level: Inter
+  color: danger
